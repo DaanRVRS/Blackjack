@@ -27,16 +27,11 @@
             //    Console.WriteLine(card);
             //}
 
-
             //asking for amount of players
-            while (players.playerList.Count == 0) {
-                string playerAmount = Console.ReadLine();
-
-                if (playerAmount.Equals('1') || playerAmount.Equals('2') || playerAmount.Equals('3'))
-                {
-                    setPlayers(playerAmount);
-                    break;
-                }
+            string playerAmount = Console.ReadLine();
+            if (playerAmount.Equals('1') || playerAmount.Equals('2') || playerAmount.Equals('3'))
+            {
+                setPlayers(playerAmount);
             }
 
             // sets players in a list by amount
