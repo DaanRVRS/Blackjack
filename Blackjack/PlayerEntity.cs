@@ -21,19 +21,21 @@ namespace Blackjack
         private int bet;
         private int cardsPulled;
         private string name;
+        private List<Card> hand;
 
-        public PlayerEntity(int bet, int cardsPulled, string name)
+        public PlayerEntity(int bet, int cardsPulled, string name, List<Card> hand)
         {
             this.id = playerIndex;
             this.bet = bet;
             this.cardsPulled = cardsPulled;
             this.name = name;
             playerIndex++;
+            this.hand = hand;
         }
 
         public void createPlayerList(string Name)
         {
-            playerList.Add(new PlayerEntity(100, 0, Name));
+            playerList.Add(new PlayerEntity(100, 0, Name, null));
         }
 
         public override string ToString()
