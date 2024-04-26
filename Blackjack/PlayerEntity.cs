@@ -16,11 +16,17 @@ namespace Blackjack
             return playerList;
         }
 
+        public string getName()
+        {
+            return this.name;
+        }
+
         public static int playerIndex = 0;
         private int id;
         private int bet;
-        private int cardsPulled;
+        public int cardsPulled;
         private string name;
+        private List<Card> hand;
 
         public PlayerEntity(int bet, int cardsPulled, string name)
         {
@@ -28,7 +34,24 @@ namespace Blackjack
             this.bet = bet;
             this.cardsPulled = cardsPulled;
             this.name = name;
+            this.hand = new List<Card>();
             playerIndex++;
+        }
+
+        public void receiveCard(Card card)
+        {
+            hand.Add(card);
+        }
+
+        public int getHandTotal()
+        {
+            int total = 0;
+            for (int i = 0; i < hand.Count; i++)
+            {
+                total = total + hand.ToArray()[i].Points;
+            }
+
+            return total;
         }
 
         public void createPlayerList(string Name)
@@ -36,10 +59,20 @@ namespace Blackjack
             playerList.Add(new PlayerEntity(100, 0, Name));
         }
 
+        public string getStarterPointsAmount()
+        {
+            return " | Punten eerste kaart: " + this.hand.ToArray()[0].Points;
+        }
+
         public override string ToString()
         {
-            return this.id + ") " + this.name + " > $" + this.bet;
+            if(this.hand.Count == 0)
+            {
+                return this.id + ") " + this.name + " > $" + this.bet;
+            } else
+            {
+                return this.id + ") " + this.name + " > $" + this.bet + getStarterPointsAmount();
+            }
         }
     }
 }
- 
