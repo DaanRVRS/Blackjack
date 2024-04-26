@@ -1,4 +1,6 @@
-﻿namespace Blackjack
+﻿using System.Collections.Generic;
+
+namespace Blackjack
 {
     internal class Deck
     {
@@ -8,6 +10,22 @@
         public List<Card> getDeck()
         {
             return CardDeck;
+        }
+
+
+        private static Random rng = new Random();
+
+        public void ShuffleDeck()
+        {
+            int n = CardDeck.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                Card value = CardDeck[k];
+                CardDeck[k] = CardDeck[n];
+                CardDeck[n] = value;
+            }
         }
 
         public void CreateDeck()
@@ -33,6 +51,7 @@
             CardDeck.Add(new Card("Spades", 4, 2, "4"));
             CardDeck.Add(new Card("Spades", 5, 3, "5"));
             CardDeck.Add(new Card("Spades", 6, 4, "6"));
+            CardDeck.Add(new Card("Spades", 3, 1, "3"));
             CardDeck.Add(new Card("Spades", 7, 5, "7"));
             CardDeck.Add(new Card("Spades", 8, 6, "8"));
             CardDeck.Add(new Card("Spades", 9, 7, "9"));
